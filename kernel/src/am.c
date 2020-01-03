@@ -23,7 +23,7 @@
 #include <kernel.h>
 #include <am.h>
 #include <tm.h>
-#include <mm.h>
+#include <memory.h>
 
 #define MAX_APPS	10
 
