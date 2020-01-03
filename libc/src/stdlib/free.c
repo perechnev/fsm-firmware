@@ -20,12 +20,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-
-#include <stdlib.h>
 #include <stddef.h>
-#include <kernel/mm.h>
+#include <kernel.h>
 
 void __free(void *__ptr) {
-	k_mm_block_t * m_ptr = (k_mm_block_t *)((char *)__ptr - sizeof(k_mm_block_t));
-	k_mm_free(m_ptr);
+	kcall(KCALL_MEMORY_DEALLOCATE, (int)__ptr, 0, 0, 0, 0, 0, 0);
 }

@@ -34,14 +34,14 @@
 
 k_mm_block_t * first_mb_ptr;
 
-k_mem_size_t k_mm_block_size(register k_mm_block_t * ptr) {
+k_mem_size_t memory_block_size(register k_mm_block_t * ptr) {
 	return (char *)ptr->end - (char *)ptr->start;
 }
 
-k_mm_block_t * find_free_block(register k_mem_size_t size) {
+k_mm_block_t * memory_find_free_block(register k_mem_size_t size) {
 	register k_mm_block_t * m_ptr = first_mb_ptr;
 	
-	while (m_ptr != K_NULL && (k_mm_block_size(m_ptr) < size || m_ptr->flags.retained)) {
+	while (m_ptr != K_NULL && (memory_block_size(m_ptr) < size || m_ptr->flags.retained)) {
 		m_ptr = m_ptr->next;
 	}
 	
@@ -61,8 +61,8 @@ void k_mm_init() {
 	first_mb_ptr->flags.retained = 0;
 }
 
-k_mm_block_t * k_mm_allocate(k_mem_size_t size) {
-	k_mm_block_t * m_ptr = find_free_block(size);
+k_mm_block_t * memory_allocate(k_mem_size_t size) {
+	k_mm_block_t * m_ptr = memory_find_free_block(size);
 	
 	if (m_ptr != K_NULL) {
 		k_mm_block_t * next = m_ptr->start + size;
@@ -80,7 +80,7 @@ k_mm_block_t * k_mm_allocate(k_mem_size_t size) {
 	return m_ptr;
 }
 
-void k_mm_free(register k_mm_block_t *ptr) {
+void memory_free(register k_mm_block_t *ptr) {
 	register k_mm_block_t * next = ptr->next;
 	register k_mm_block_t * previous = ptr->previous;
 	

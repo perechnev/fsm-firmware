@@ -39,8 +39,8 @@ typedef struct {
 
 void	k_mm_init	();
 
-k_mm_block_t *	k_mm_allocate	(k_mem_size_t size);
-void			k_mm_free		(k_mm_block_t * ptr);
-k_mem_size_t	k_mm_block_size	(k_mm_block_t * ptr);
+k_mm_block_t *	memory_allocate(k_mem_size_t size);
+void			memory_free(k_mm_block_t * ptr);
+k_mem_size_t	memory_block_size(k_mm_block_t * ptr);
 
 #endif /* __KERNEL_MM_H__ */

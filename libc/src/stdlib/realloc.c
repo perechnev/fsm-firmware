@@ -20,20 +20,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-
 #include <stdlib.h>
 #include <stddef.h>
 #include <string.h>
-#include <kernel/mm.h>
 
-void *	__realloc	(void * __ptr, __size_t __size) {
-	k_mm_block_t * old_block = (k_mm_block_t *)((char *)__ptr - sizeof(k_mm_block_t));
-	k_mm_block_t * new_block = k_mm_allocate(__size);
-	
-	__size_t size_to_copy = __size > k_mm_block_size(old_block) ? k_mm_block_size(old_block) : __size;
-	memcpy(new_block->start, old_block->start, size_to_copy);
-	
-	k_mm_free(old_block);
-	
-	return new_block->start;
+void * __realloc(void * old_ptr, __size_t size) {
+	void * new_ptr = __malloc(size);
+	memcpy(new_ptr, old_ptr, size);
+	free(old_ptr);
+	return new_ptr;
 }

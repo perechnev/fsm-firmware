@@ -42,6 +42,6 @@ RESET_HANDLER:
 
 SWI_HANDLER:
 	PUSH	{LR}
-	BL		syscall
+	BL		kcall_handler
 	POP		{LR}
 	MOVS	PC, LR /* Return from supervisor mode */
