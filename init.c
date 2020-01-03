@@ -20,7 +20,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include <kernel/mm.h>
 #include <kernel/am.h>
 #include <kernel/tm.h>
 
@@ -37,6 +36,8 @@
 #include "user/devices/devices.h"
 #include "user/tasks/tasks.h"
 #include "user/timer/timer.h"
+
+extern void k_mm_init();
 
 void init() {
 	k_mm_init();
