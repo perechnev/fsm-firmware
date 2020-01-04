@@ -1,19 +1,19 @@
 ## Kernel calls
 
 ### System
-* `void kc_reset();`
+* `void kc_reset();` _Not implemented_
 
 ### Memory
-* `void * kc_alloc(int size);`
-* `int kc_retain(void * address);`
-* `int kc_release(void * address);`
+* `void * kc_alloc(int size);` _Not implemented_
+* `int kc_retain(void * address);` _Not implemented_
+* `int kc_release(void * address);` _Not implemented_
 
 ### Process
-* `kc_spawn();`
-* `kc_kill();`
-* `kc_send();`
-* `kc_receive();`
+* `kc_spawn();` _Not implemented_
+* `kc_kill();` _Not implemented_
+* `kc_send();` _Not implemented_
+* `kc_receive();` _Not implemented_
 
 ### Node
-* `kc_write();`
-* `kc_read();`
+* `kc_write();` _Not implemented_
+* `kc_read();` _Not implemented_
