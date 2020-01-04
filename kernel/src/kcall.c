@@ -31,7 +31,7 @@ int kcall(int call, int p1) {
 	__asm__("MOV r1, %0" : : "r" (p1));
 	__asm__("SVC #0x00");
 	__asm__("MOV %0, r7" : "=r" (result));
-	__asm__("POP {r0-r1}");
+	__asm__("POP {r0-r7}");
 
 	return result;
 }
