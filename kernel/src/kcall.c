@@ -23,19 +23,6 @@
 #include <kernel.h>
 #include <memory.h>
 
-int kcall(int call, int p1) {
-	int result = 0;
-
-	__asm__("PUSH {r0-r7}");
-    __asm__("MOV r0, %0" : : "r" (call));
-	__asm__("MOV r1, %0" : : "r" (p1));
-	__asm__("SVC #0x00");
-	__asm__("MOV %0, r7" : "=r" (result));
-	__asm__("POP {r0-r7}");
-
-	return result;
-}
-
 void __attribute__((interrupt("SWI"))) kcall_handle(int r0, int r1, int r2, int r3) {
 	int result = kcall_dispatch(r0, r1, r2, r3);
 	__asm__("MOV r7, %0" : : "r" (result));
