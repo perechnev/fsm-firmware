@@ -24,5 +24,5 @@
 #include <kernel.h>
 
 void __free(void *__ptr) {
-	kcall(KCALL_MEMORY_DEALLOCATE, (int)__ptr, 0, 0, 0, 0, 0, 0);
+	kcall(KCALL_MEMORY_DEALLOCATE, (int)__ptr);
 }

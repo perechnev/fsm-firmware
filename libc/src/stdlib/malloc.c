@@ -24,5 +24,5 @@
 #include "stddef.h"
 
 void * __malloc(__size_t __size) {
-	return (void *)kcall(KCALL_MEMORY_ALLOCATE, (int)__size, 0, 0, 0, 0, 0, 0);
+	return (void *)kcall(KCALL_MEMORY_ALLOCATE, (int)__size);
 }

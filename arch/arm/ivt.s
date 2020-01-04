@@ -25,7 +25,7 @@
 __RESET:
 	B		RESET_HANDLER /* Reset */
 	B		. /* Undefined */
-	B		SWI_HANDLER	/* SWI */
+	B		kcall_handler	/* SWI */
 	B		. /* Prefetch Abort */
 	B		. /* Data Abort */
 	B		. /* reserved */
@@ -39,9 +39,3 @@ RESET_HANDLER:
 	LDR		SP, =usr_stack_top
 	BL		init
 	B		.
-
-SWI_HANDLER:
-	PUSH	{LR}
-	BL		kcall_handler
-	POP		{LR}
-	MOVS	PC, LR /* Return from supervisor mode */

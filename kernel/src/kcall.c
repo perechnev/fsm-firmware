@@ -23,47 +23,32 @@
 #include <kernel.h>
 #include <memory.h>
 
-int kcall(int call, int p1, int p2, int p3, int p4, int p5, int p6, int p7) {
+int kcall(int call, int p1) {
 	int result = 0;
 
 	__asm__("PUSH {r0-r7}");
-	__asm__("MOV r0, %0" : : "r" (p1));
-	__asm__("MOV r1, %0" : : "r" (p2));
-	__asm__("MOV r2, %0" : : "r" (p3));
-	__asm__("MOV r3, %0" : : "r" (p4));
-	__asm__("MOV r4, %0" : : "r" (p5));
-	__asm__("MOV r5, %0" : : "r" (p6));
-	__asm__("MOV r6, %0" : : "r" (p7));
-	__asm__("MOV r7, %0" : : "r" (call));
+    __asm__("MOV r0, %0" : : "r" (call));
+	__asm__("MOV r1, %0" : : "r" (p1));
 	__asm__("SVC #0x00");
-	__asm__("MOV %0, r0" : "=r" (result));
-	__asm__("POP {r0-r7}");
+	__asm__("MOV %0, r7" : "=r" (result));
+	__asm__("POP {r0-r1}");
 
 	return result;
 }
 
-void kcall_handler() {
-	int call, p1, p2, p3, p4, p5, p6, p7, result;
+void __attribute__((interrupt("SWI"))) kcall_handler(int r0, int r1, int r2, int r3) {
+	int result;
 
-	__asm__("MOV %0, r0" : "=r" (p1));
-	__asm__("MOV %0, r1" : "=r" (p2));
-	__asm__("MOV %0, r2" : "=r" (p3));
-	__asm__("MOV %0, r3" : "=r" (p4));
-	__asm__("MOV %0, r4" : "=r" (p5));
-	__asm__("MOV %0, r5" : "=r" (p6));
-	__asm__("MOV %0, r6" : "=r" (p7));
-	__asm__("MOV %0, r7" : "=r" (call));
-
-	switch (call) {
+	switch (r0) {
 		case KCALL_MEMORY_ALLOCATE:
-			result = kcall_memory_allocate(p1);
+			result = kcall_memory_allocate(r1);
 			break;
 		case KCALL_MEMORY_DEALLOCATE:
-			kcall_memory_deallocate(p1);
+			kcall_memory_deallocate(r1);
 			break;
 	}
 
-	__asm__("MOV r0, %0" : : "r" (result));
+	__asm__("MOV r7, %0" : : "r" (result));
 }
 
 int kcall_memory_allocate(int size) {
