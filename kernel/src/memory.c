@@ -41,7 +41,7 @@ k_mem_size_t memory_block_size(register k_mm_block_t * ptr) {
 k_mm_block_t * memory_find_free_block(register k_mem_size_t size) {
 	register k_mm_block_t * m_ptr = first_mb_ptr;
 	
-	while (m_ptr != K_NULL && (memory_block_size(m_ptr) < size || m_ptr->flags.retained)) {
+	while (m_ptr != K_NULL && (memory_block_size(m_ptr) < size || m_ptr->retain_count > 0)) {
 		m_ptr = m_ptr->next;
 	}
 	
@@ -58,7 +58,7 @@ void k_mm_init() {
 	first_mb_ptr->end = MEMORY_END;
 	first_mb_ptr->previous = K_NULL;
 	first_mb_ptr->next = K_NULL;
-	first_mb_ptr->flags.retained = 0;
+	first_mb_ptr->retain_count = 0;
 }
 
 k_mm_block_t * memory_allocate(k_mem_size_t size) {
@@ -70,11 +70,11 @@ k_mm_block_t * memory_allocate(k_mem_size_t size) {
 		next->end = m_ptr->end;
 		next->previous = m_ptr;
 		next->next = m_ptr->next;
-		next->flags.retained = m_ptr->flags.retained;
+		next->retain_count = 0;
 		
 		m_ptr->end = next;
 		m_ptr->next = next;
-		m_ptr->flags.retained = 1;
+		m_ptr->retain_count = 1;
 	}
 	
 	return m_ptr;
@@ -84,14 +84,14 @@ void memory_free(register k_mm_block_t *ptr) {
 	register k_mm_block_t * next = ptr->next;
 	register k_mm_block_t * previous = ptr->previous;
 	
-	ptr->flags.retained = 0;
+	ptr->retain_count = 0;
 	
-	if (next != K_NULL && !next->flags.retained) {
+	if (next != K_NULL && next->retain_count == 0) {
 		ptr->end = next->end;
 		ptr->next = next->next;
 	}
 	
-	if (previous != K_NULL && !previous->flags.retained) {
+	if (previous != K_NULL && previous->retain_count == 0) {
 		previous->next = ptr->next;
 		previous->end = ptr->end;
 	}
