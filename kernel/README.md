@@ -4,9 +4,18 @@
 * `void kc_reset();` _Not implemented_
 
 ### Memory
-* `void * kc_alloc(int size);` _Not implemented_
-* `int kc_retain(void * address);` _Not implemented_
-* `int kc_release(void * address);` _Not implemented_
+
+* `void * kc_allocate(int size);`
+Finds a free block of memory of `size` bytes and retains it.
+Returns a pointer to allocated memory or `NULL` if no free block was found.
+
+* `int kc_retain(void * address);`
+Retains the block of memory pointed in `address`.
+Returns the result number of block retains.
+
+* `int kc_release(void * address);`
+Releases the block of memory pointed in `address` and deallocates it if number of retains becomes zero.
+Returns the result number of block retains.
 
 ### Process
 * `kc_spawn();` _Not implemented_
