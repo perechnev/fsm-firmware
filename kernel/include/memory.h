@@ -32,9 +32,7 @@ typedef struct {
 	struct k_mm_block_t * previous;
 	struct k_mm_block_t * next;
 	
-	struct {
-		char retained : 1;
-	} flags;
+	int retain_count;
 } k_mm_block_t;
 
 void	k_mm_init	();
