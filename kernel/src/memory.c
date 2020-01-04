@@ -80,6 +80,20 @@ k_mm_block_t * memory_allocate(k_mem_size_t size) {
 	return m_ptr;
 }
 
+int memory_retain(void * ptr) {
+    k_mm_block_t * block_ptr = (k_mm_block_t *)((char *)ptr - sizeof(k_mm_block_t));
+    block_ptr->retain_count++;
+    return block_ptr->retain_count;
+}
+
+int memory_release(void * ptr) {
+    k_mm_block_t * block_ptr = (k_mm_block_t *)((char *)ptr - sizeof(k_mm_block_t));
+    block_ptr->retain_count--;
+    if (block_ptr->retain_count <= 0) {
+        memory_free(block_ptr);
+    }
+}
+
 void memory_free(register k_mm_block_t *ptr) {
 	register k_mm_block_t * next = ptr->next;
 	register k_mm_block_t * previous = ptr->previous;

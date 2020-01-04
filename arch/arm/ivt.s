@@ -25,7 +25,7 @@
 __RESET:
 	B		RESET_HANDLER /* Reset */
 	B		. /* Undefined */
-	B		kcall_handler	/* SWI */
+	B		kcall_handle	/* SWI */
 	B		. /* Prefetch Abort */
 	B		. /* Data Abort */
 	B		. /* reserved */

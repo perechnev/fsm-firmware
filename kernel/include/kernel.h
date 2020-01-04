@@ -27,8 +27,20 @@
 #define K_NULL ((void *)0)
 #endif
 
-#define KCALL_MEMORY_ALLOCATE		0x10
-#define KCALL_MEMORY_DEALLOCATE		0x11
+// System
+#define KCALL_RESET     0x00
+// Memory
+#define KCALL_ALLOCATE	0x10
+#define KCALL_RETAIN    0x11
+#define KCALL_RELEASE   0x12
+// Process
+#define KCALL_SPAWN     0x20
+#define KCALL_KILL      0x21
+#define KCALL_SEND      0x22
+#define KCALL_RECEIVE   0x23
+// Node
+#define KCALL_WRITE     0x30
+#define KCALL_READ      0x31
 
 int		kcall(int call, int p1);
 

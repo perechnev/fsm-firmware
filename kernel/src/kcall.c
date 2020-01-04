@@ -36,26 +36,36 @@ int kcall(int call, int p1) {
 	return result;
 }
 
-void __attribute__((interrupt("SWI"))) kcall_handler(int r0, int r1, int r2, int r3) {
-	int result;
-
-	switch (r0) {
-		case KCALL_MEMORY_ALLOCATE:
-			result = kcall_memory_allocate(r1);
-			break;
-		case KCALL_MEMORY_DEALLOCATE:
-			kcall_memory_deallocate(r1);
-			break;
-	}
-
+void __attribute__((interrupt("SWI"))) kcall_handle(int r0, int r1, int r2, int r3) {
+	int result = kcall_dispatch(r0, r1, r2, r3);
 	__asm__("MOV r7, %0" : : "r" (result));
 }
 
-int kcall_memory_allocate(int size) {
-	return (int) memory_allocate( (k_mem_size_t)size )->start;
+int __attribute__((always_inline)) kcall_dispatch(int call, int r1, int r2, int r3) {
+    switch (call) {
+        case KCALL_RESET:       break;
+        case KCALL_ALLOCATE:    return kcall_handle_allocate(r1);
+        case KCALL_RETAIN:      return kcall_handle_retain(r1);
+        case KCALL_RELEASE:     return kcall_handle_release(r1);
+        case KCALL_SPAWN:       break;
+        case KCALL_KILL:        break;
+        case KCALL_SEND:        break;
+        case KCALL_RECEIVE:     break;
+        case KCALL_WRITE:       break;
+        case KCALL_READ:        break;
+    }
+    // TODO: Need somehow to indicate that kernel call doesn't exist
+    return 0;
 }
 
-void kcall_memory_deallocate(int ptr) {
-	k_mm_block_t * m_ptr = (k_mm_block_t *)((char *)ptr - sizeof(k_mm_block_t));
-	memory_free(m_ptr);
+int __attribute__((always_inline)) kcall_handle_allocate(int p1) {
+	return (int)memory_allocate(p1)->start;
+}
+
+int __attribute__((always_inline)) kcall_handle_retain(int p1) {
+    return memory_retain((void *)p1);
+}
+
+int __attribute__((always_inline)) kcall_handle_release(int p1) {
+    return memory_release((void *)p1);
 }
