@@ -27,4 +27,9 @@
 #define K_NULL ((void *)0)
 #endif
 
+#define KCALL_MEMORY_ALLOCATE		0x10
+#define KCALL_MEMORY_DEALLOCATE		0x11
+
+int		kcall(int call, int p1, int p2, int p3, int p4, int p5, int p6, int p7);
+
 #endif

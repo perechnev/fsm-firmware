@@ -23,7 +23,7 @@
 #include <kernel.h>
 #include <am.h>
 #include <tm.h>
-#include <mm.h>
+#include <memory.h>
 
 #define MAX_APPS	10
 
@@ -58,7 +58,7 @@ void k_am_init() {
 }
 
 void k_am_register(char * name, k_tm_task_entry_f entry) {
-	k_am_application_t * app = k_mm_allocate(sizeof(k_am_application_t))->start;
+	k_am_application_t * app = memory_allocate(sizeof(k_am_application_t))->start;
 	app->name = name;
 	app->entry = entry;
 	

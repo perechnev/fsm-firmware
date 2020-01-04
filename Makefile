@@ -21,14 +21,12 @@ firmware: build/ivt.o framework build/init.o
 		build/libc.a \
 		build/kernel.a \
 		libgcc.a \
-	
-	arm-none-eabi-objcopy -O binary build/firmware.elf build/firmware.bin
 
 run: firmware
-	qemu-system-arm -M versatilepb -m 128M -kernel build/firmware.bin -serial stdio
+	qemu-system-arm -M versatilepb -m 128M -kernel build/firmware.elf -serial stdio
 
 debug: firmware
-	qemu-system-arm -s -S -M versatilepb -m 128M -kernel build/firmware.bin -serial stdio
+	qemu-system-arm -s -S -M versatilepb -m 128M -kernel build/firmware.elf -serial stdio
 
 build/ivt.o:
 	${AS} -mcpu=arm926ej-s -g arch/arm/ivt.s -o build/ivt.o
@@ -41,6 +39,8 @@ build/kernel.a:
 	mkdir build/include/
 	mkdir build/include/kernel/
 	cp kernel/include/* build/include/kernel/
+	mv build/include/kernel/kernel.h build/include/
+	rm build/include/kernel/memory.h
 	mv kernel/kernel.a build/
 
 build/libc.a:

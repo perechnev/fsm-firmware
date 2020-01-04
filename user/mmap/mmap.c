@@ -23,8 +23,19 @@
 #include "mmap.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <kernel/mm.h>
 #include <kernel/tm.h>
+
+typedef struct {
+	char * start;
+	char * end;
+	
+	struct k_mm_block_t * previous;
+	struct k_mm_block_t * next;
+	
+	struct {
+		char retained : 1;
+	} flags;
+} k_mm_block_t;
 
 extern k_mm_block_t * first_mb_ptr;
 
