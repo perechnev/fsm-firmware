@@ -1,17 +1,19 @@
-## System
-### `void kc_reset();`
+## Kernel calls
 
-## Memory
-### `void * kc_alloc(int size);`
-### `int kc_retain(void * address);`
-### `int kc_release(void * address);`
+### System
+* `void kc_reset();`
 
-## Process
-### `kc_spawn();`
-### `kc_kill();`
-### `kc_send();`
-### `kc_receive();`
+### Memory
+* `void * kc_alloc(int size);`
+* `int kc_retain(void * address);`
+* `int kc_release(void * address);`
 
-## Node
-### `kc_write();`
-### `kc_read();`
+### Process
+* `kc_spawn();`
+* `kc_kill();`
+* `kc_send();`
+* `kc_receive();`
+
+### Node
+* `kc_write();`
+* `kc_read();`
