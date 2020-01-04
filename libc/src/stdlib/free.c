@@ -21,8 +21,8 @@
 // SOFTWARE.
 
 #include <stddef.h>
-#include <kernel.h>
+#include <kernel/kcall.h>
 
 void __free(void *__ptr) {
-	kcall(KCALL_MEMORY_DEALLOCATE, (int)__ptr);
+    kc_release(__ptr);
 }

@@ -20,9 +20,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include <kernel.h>
+#include <kernel/kcall.h>
 #include "stddef.h"
 
 void * __malloc(__size_t __size) {
-	return (void *)kcall(KCALL_MEMORY_ALLOCATE, (int)__size);
+	return kc_allocate(__size);
 }
