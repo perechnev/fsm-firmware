@@ -29,7 +29,7 @@
  * There is also a space from 0x1000000 to whatever exists, but we don't
  * use it yet.
  */
-#define MEMORY_BEGIN	(void *)0x04000000
+#define MEMORY_BEGIN	(void *)0x05000000 // 0x04000000
 #define MEMORY_END		(void *)0x08000000
 
 k_mm_block_t * first_mb_ptr;
