@@ -24,7 +24,7 @@
 #include <device/PL03x.h>
 #include <stdio.h>
 
-int __attribute__((section(".app_timer"))) timer_entry(int state) {
+int __attribute__((section(".app_timer"))) timer_entry(int process_id, int state) {
 	char timer_name[] = "timer0";
 	char buffer[32];
 

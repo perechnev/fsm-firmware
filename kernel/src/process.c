@@ -37,7 +37,7 @@ void process_schedule() {
     while (1) {
         for (int i = 0; i < MAX_PROCESS_COUNT; i++) {
             if (process_list[i].entry != 0) {
-                process_list[i].state = process_list[i].entry(process_list[i].state);
+                process_list[i].state = process_list[i].entry(i, process_list[i].state);
 
                 if (process_list[i].state == PSTATE_EXIT) {
                     process_kill(i);

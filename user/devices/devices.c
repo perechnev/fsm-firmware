@@ -27,7 +27,7 @@
 extern int devices;
 extern k_ddm_device_t * device_list[];
 
-int __attribute__((section(".app_devices"))) devices_entry(int state) {
+int __attribute__((section(".app_devices"))) devices_entry(int process_id, int state) {
 	char buffer[32];
 	int i = 0;
 	

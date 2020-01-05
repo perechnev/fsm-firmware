@@ -56,7 +56,7 @@ void print_block(k_mm_block_t * ptr) {
 	puts("\r\n");
 }
 
-int __attribute__((section(".app_mmap"))) mmap_entry(int state) {
+int __attribute__((section(".app_mmap"))) mmap_entry(int process_id, int state) {
 	itoa(sizeof(k_mm_block_t), buffer, 10);
 	puts("Size of k_mm_block_t = ");
 	puts(buffer);

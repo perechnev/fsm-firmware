@@ -32,7 +32,7 @@
 char command_buffer[256];
 char current_symbol;
 
-int __attribute__((section(".app_shell"))) shell_entry(int state) {
+int __attribute__((section(".app_shell"))) shell_entry(int process_id, int state) {
 	int read;
 	
 	switch (state) {
