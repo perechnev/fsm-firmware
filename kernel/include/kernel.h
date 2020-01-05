@@ -36,11 +36,11 @@
 // Process
 #define KCALL_SPAWN     0x20
 #define KCALL_KILL      0x21
-#define KCALL_SEND      0x22
-#define KCALL_RECEIVE   0x23
-// Node
-#define KCALL_WRITE     0x30
-#define KCALL_READ      0x31
+// Inter process communication
+#define KCALL_SEND      0x30
+#define KCALL_RECEIVE   0x31
+#define KCALL_WRITE     0x32
+#define KCALL_READ      0x33
 
 int		kcall(int call, int p1);
 
