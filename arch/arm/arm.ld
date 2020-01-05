@@ -14,4 +14,6 @@ SECTIONS
 
     . = 0x4000000;
 	.app_kill  : { build/kill.o(.app_kill) }
+	. = 0x4000800;
+	.app_shell : { build/shell.o(.app_shell) }
 }

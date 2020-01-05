@@ -20,13 +20,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include "shell.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include <kernel/am.h>
-#include <kernel/tm.h>
 
 #define STATE_DEFAULT			1
 #define	STATE_GETTING_CHARS		2
@@ -35,17 +32,17 @@
 char command_buffer[256];
 char current_symbol;
 
-int shell(int task_id, int state) {
+int __attribute__((section(".app_shell"))) shell_entry(int state) {
 	int read;
 	
 	switch (state) {
 		case 0:
-			yield(STATE_DEFAULT);
+            return STATE_DEFAULT;
 			
 		case STATE_DEFAULT:
 			current_symbol = 0;
 			puts("sh# ");
-			yield(STATE_GETTING_CHARS);
+            return STATE_GETTING_CHARS;
 			
 		case STATE_GETTING_CHARS:
 			read = fread(command_buffer + current_symbol, sizeof(char), 1, stdin);
@@ -57,26 +54,26 @@ int shell(int task_id, int state) {
 			if (command_buffer[current_symbol] == '\r') {
 				puts("\r\n");
 				command_buffer[current_symbol] = '\0';
-				yield(STATE_EXECUTING);
+                return STATE_EXECUTING;
 			}
 			
 			current_symbol += read;
 			command_buffer[current_symbol + 1] = '\0';
-			
-			yield(STATE_GETTING_CHARS);
+
+            return STATE_GETTING_CHARS;
 			
 		case STATE_EXECUTING:
 			if (strcmp(command_buffer, "exit") == 0) {
-				exit();
+                return 0;
 			}
 			
-			int status = k_am_run(command_buffer);
-			if (status == -1) {
-				puts("Command not found: "); puts(command_buffer); puts("\r\n");
-			}
-			
-			yield(STATE_DEFAULT);
+//			int status = k_am_run(command_buffer);
+//			if (status == -1) {
+//				puts("Command not found: "); puts(command_buffer); puts("\r\n");
+//			}
+
+            return STATE_DEFAULT;
 	}
-	
-	exit();
+
+    return 0;
 }

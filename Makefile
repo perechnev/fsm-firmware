@@ -58,6 +58,7 @@ build/user.a:
 	$(MAKE) -C user
 	mv user/user.a build/
 	mv user/kill/kill.o build/
+	mv user/shell/shell.o build/
 
 build/device.a:
 	mkdir -p build/device/

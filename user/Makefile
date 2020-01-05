@@ -5,7 +5,7 @@ INCLUDE = -I ../build/include/
 COMMON_GCC_FLAGS = -nostdlib -nostdinc -ffreestanding -lc $(INCLUDE) -O0
 CFLAGS = $(COMMON_GCC_FLAGS) -mcpu=arm926ej-s -g -D TARGET_ARM
 
-SRC = apps/apps.c devices/devices.c mmap/mmap.c shell/shell.c tasks/tasks.c timer/timer.c
+SRC = devices/devices.c mmap/mmap.c timer/timer.c
 OBJ = ${SRC:.c=.o}
 
 all: $(OBJ)

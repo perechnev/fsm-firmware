@@ -20,8 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include <kernel/am.h>
-#include <kernel/tm.h>
+#include <kernel/kcall.h>
 
 #include <device/pl011.h>
 #include <device/PL03x.h>
@@ -29,13 +28,6 @@
 
 #include <stdio.h>
 #include <string.h>
-
-#include "user/shell/shell.h"
-#include "user/mmap/mmap.h"
-#include "user/apps/apps.h"
-#include "user/devices/devices.h"
-#include "user/tasks/tasks.h"
-#include "user/timer/timer.h"
 
 extern void k_mm_init();
 
@@ -57,20 +49,12 @@ void init() {
 	// dev_pl111_init(0x10120000, "lcd0", lcd0_control);
 
 	dev_PL03x_init(0x101E8000, "timer0");
-	
-	k_am_init();
 
-	k_am_register("shell", shell);
-	k_am_register("mmap", mmap_entry);
-	k_am_register("apps", apps_entry);
-	k_am_register("devices", devices_entry);
-	k_am_register("tasks", tasks_entry);
-	k_am_register("timer", timer_entry);
+	process_init();
 
-	k_tm_init();
-	
-	k_am_run("shell");
-	k_tm_run_scheduler(); // Run loop
+    kc_spawn(0x4000800);
+
+    process_schedule();
 
 	puts("System is ready to shutdown.");
 }
