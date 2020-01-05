@@ -23,6 +23,7 @@
 #include <kernel.h>
 #include "memory.h"
 #include "process.h"
+#include "mailbox.h"
 
 void __attribute__((interrupt("SWI"))) kcall_handle(int r0, int r1, int r2, int r3) {
 	int result = kcall_dispatch(r0, r1, r2, r3);
@@ -37,8 +38,8 @@ int __attribute__((always_inline)) kcall_dispatch(int call, int r1, int r2, int 
         case KCALL_RELEASE:     return kcall_handle_release(r1);
         case KCALL_SPAWN:       return kcall_handle_spawn(r1);
         case KCALL_KILL:        return kcall_handle_kill(r1);
-        case KCALL_SEND:        break;
-        case KCALL_RECEIVE:     break;
+        case KCALL_SEND:        return kcall_handle_send(r1);
+        case KCALL_RECEIVE:     return kcall_handle_receive(r1);
         case KCALL_WRITE:       break;
         case KCALL_READ:        break;
     }
@@ -64,4 +65,12 @@ int __attribute__ ((always_inline)) kcall_handle_spawn(int p1) {
 
 int __attribute__ ((always_inline)) kcall_handle_kill(int p1) {
     return process_kill(p1);
+}
+
+int __attribute__ ((always_inlile)) kcall_handle_send(int p1) {
+    return mailbox_send((k_mail_t *)p1);
+}
+
+int __attribute__ ((always_inline)) kcall_handle_receive(int p1) {
+    return (int)mailbox_receive(p1);
 }

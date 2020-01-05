@@ -38,6 +38,7 @@ typedef struct {
 void	k_mm_init	();
 
 k_mm_block_t *	memory_allocate(k_mem_size_t size);
+int             memory_retain(void * ptr);
 void			memory_free(k_mm_block_t * ptr);
 k_mem_size_t	memory_block_size(k_mm_block_t * ptr);
 

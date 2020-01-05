@@ -23,6 +23,12 @@
 #ifndef __KERNEL_H__
 #define __KERNEL_H__
 
+typedef struct {
+    int sender_id;
+    int receiver_id;
+    void * data;
+} k_mail_t;
+
 #ifndef K_NULL
 #define K_NULL ((void *)0)
 #endif

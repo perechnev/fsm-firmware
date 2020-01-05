@@ -1,4 +1,4 @@
-#include <kernel.h>
+#include <kernel/kernel.h>
 
 int __kcall(int call, int p1) {
     int result = 0;
@@ -31,4 +31,12 @@ int kc_spawn(void * entry) {
 
 int kc_kill(int process_id) {
     return __kcall(KCALL_KILL, process_id);
+}
+
+int kc_send(k_mail_t * message) {
+    return __kcall(KCALL_SEND, (int)message);
+}
+
+k_mail_t * kc_receive(int process_id) {
+    return (k_mail_t *)__kcall(KCALL_RECEIVE, process_id);
 }
