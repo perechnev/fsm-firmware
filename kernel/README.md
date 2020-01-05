@@ -27,8 +27,12 @@ Returns process identifier if process spawned successfully. Otherwise returns `-
 Kills process with identifier specified in `process_id`.
 Returns `0` if process was successfully killed.
 
-### Inter process communication
-* `kc_send(int process_id, void * message);` _Not implemented_
-* `kc_receive();` _Not implemented_
-* `kc_write();` _Not implemented_
-* `kc_read();` _Not implemented_
+### Mailbox
+
+* `int kc_send(k_mail_t * message);`
+Puts mail to mailbox.
+Returns `0` in case of success.
+
+* `k_mail_t * kc_receive(int process_id);`
+Takes the first mail found for process specified in `process_id`.
+Returns a pointer to mail or NULL in case of no mail found.
