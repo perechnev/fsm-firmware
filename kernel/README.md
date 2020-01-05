@@ -20,9 +20,9 @@ Returns the result number of block retains.
 ### Process
 * `int kc_spawn(void * entry);` _Not implemented_
 * `int kc_kill(int process_id);` _Not implemented_
+
+### Inter process communication
 * `kc_send(int process_id, void * message);` _Not implemented_
 * `kc_receive();` _Not implemented_
-
-### Node
 * `kc_write();` _Not implemented_
 * `kc_read();` _Not implemented_
