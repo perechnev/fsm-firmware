@@ -57,6 +57,7 @@ build/libkernel.a:
 build/user.a:
 	$(MAKE) -C user
 	mv user/user.a build/
+	mv user/kill/kill.o build/
 
 build/device.a:
 	mkdir -p build/device/

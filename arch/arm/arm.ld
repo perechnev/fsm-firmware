@@ -11,4 +11,7 @@ SECTIONS
 	stack_top = .;
 	. = . + 0x100;
 	usr_stack_top = .;
+
+    . = 0x4000000;
+	.app_kill  : { build/kill.o(.app_kill) }
 }
