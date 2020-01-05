@@ -65,12 +65,17 @@ int __attribute__((section(".app_shell"))) shell_entry(int state) {
 		case STATE_EXECUTING:
 			if (strcmp(command_buffer, "exit") == 0) {
                 return 0;
+			} else if (strcmp(command_buffer, "timer") == 0) {
+			    kc_spawn(0x4001000);
+			} else if (strcmp(command_buffer, "mmap") == 0) {
+			    kc_spawn(0x4001800);
+			} else if (strcmp(command_buffer, "devices") == 0) {
+                kc_spawn(0x4000000);
+            } else {
+				puts("Command not found: ");
+				puts(command_buffer);
+				puts("\r\n");
 			}
-			
-//			int status = k_am_run(command_buffer);
-//			if (status == -1) {
-//				puts("Command not found: "); puts(command_buffer); puts("\r\n");
-//			}
 
             return STATE_DEFAULT;
 	}

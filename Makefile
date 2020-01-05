@@ -10,13 +10,15 @@ CFLAGS = $(COMMON_GCC_FLAGS) -mcpu=arm926ej-s -g -D TARGET_ARM
 
 all: framework
 
-framework: build/kernel.a build/libkernel.a build/libc.a build/device.a build/user.a
+framework: build/kernel.a build/libkernel.a build/libc.a build/device.a
 
 firmware: build/ivt.o framework build/init.o
+	$(MAKE) -C user
+	mv user/*/*.o build/
+
 	${LD} -o build/firmware.elf -T arch/arm/arm.ld \
 		build/ivt.o \
 		build/init.o \
-		build/user.a \
 		build/device.a \
 		build/libc.a \
 		build/libkernel.a \
@@ -53,12 +55,6 @@ build/libkernel.a:
 	$(MAKE) -C libkernel
 	cp libkernel/include/* build/include/kernel/
 	mv libkernel/libkernel.a build/
-
-build/user.a:
-	$(MAKE) -C user
-	mv user/user.a build/
-	mv user/kill/kill.o build/
-	mv user/shell/shell.o build/
 
 build/device.a:
 	mkdir -p build/device/

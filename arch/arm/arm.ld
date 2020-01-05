@@ -13,7 +13,13 @@ SECTIONS
 	usr_stack_top = .;
 
     . = 0x4000000;
-	.app_kill  : { build/kill.o(.app_kill) }
+	.app_devices : { build/devices.o(.app_devices) }
 	. = 0x4000800;
 	.app_shell : { build/shell.o(.app_shell) }
+	. = 0x4001000;
+	.app_timer : { build/timer.o(.app_timer) }
+	. = 0x4001000;
+	.app_timer : { build/timer.o(.app_timer) }
+	. = 0x4001800;
+	.app_mmap  : { build/mmap.o(.app_mmap) }
 }

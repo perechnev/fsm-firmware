@@ -20,10 +20,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include "mmap.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <kernel/tm.h>
 
 typedef struct {
 	char * start;
@@ -58,7 +56,7 @@ void print_block(k_mm_block_t * ptr) {
 	puts("\r\n");
 }
 
-int mmap_entry(int task_id, int state) {
+int __attribute__((section(".app_mmap"))) mmap_entry(int state) {
 	itoa(sizeof(k_mm_block_t), buffer, 10);
 	puts("Size of k_mm_block_t = ");
 	puts(buffer);
@@ -72,6 +70,6 @@ int mmap_entry(int task_id, int state) {
 		print_block(ptr);
 		ptr = ptr->next;
 	}
-	
-	exit();
+
+    return 0;
 }

@@ -20,13 +20,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include "timer.h"
 #include <kernel/ddm.h>
-#include <kernel/tm.h>
 #include <device/PL03x.h>
 #include <stdio.h>
 
-int timer_entry(int task_id, int state) {
+int __attribute__((section(".app_timer"))) timer_entry(int state) {
 	char timer_name[] = "timer0";
 	char buffer[32];
 
@@ -40,5 +38,5 @@ int timer_entry(int task_id, int state) {
 	puts(buffer);
 	puts("\r\n");
 
-	exit();
+    return 0;
 }

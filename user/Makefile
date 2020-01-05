@@ -5,12 +5,10 @@ INCLUDE = -I ../build/include/
 COMMON_GCC_FLAGS = -nostdlib -nostdinc -ffreestanding -lc $(INCLUDE) -O0
 CFLAGS = $(COMMON_GCC_FLAGS) -mcpu=arm926ej-s -g -D TARGET_ARM
 
-SRC = devices/devices.c mmap/mmap.c timer/timer.c
+SRC = $(shell ls */*.c)
 OBJ = ${SRC:.c=.o}
 
 all: $(OBJ)
-	$(AR) rcs user.a $?
-	$(CC) $(CFLAGS) -c kill/kill.c -o kill/kill.o
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@

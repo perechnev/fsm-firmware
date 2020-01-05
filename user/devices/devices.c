@@ -20,16 +20,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include "devices.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <kernel/ddm.h>
-#include <kernel/tm.h>
 
 extern int devices;
 extern k_ddm_device_t * device_list[];
 
-int devices_entry(int task_id, int state) {
+int __attribute__((section(".app_devices"))) devices_entry(int state) {
 	char buffer[32];
 	int i = 0;
 	
@@ -40,6 +38,6 @@ int devices_entry(int task_id, int state) {
 	}
 	
 	puts("\r\n");
-	
-	exit();
+
+    return 0;
 }
