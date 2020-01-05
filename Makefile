@@ -42,8 +42,8 @@ build/kernel.a:
 	mkdir build/include/
 	mkdir build/include/kernel/
 	cp kernel/include/* build/include/kernel/
-	mv build/include/kernel/kernel.h build/include/
-	rm build/include/kernel/memory.h
+	cp kernel/src/ddm.h build/include/kernel/
+	cp kernel/src/io.h build/include/kernel/
 	mv kernel/kernel.a build/
 
 build/libc.a:

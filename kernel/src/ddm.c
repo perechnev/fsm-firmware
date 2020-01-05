@@ -21,7 +21,7 @@
 // SOFTWARE.
 
 #include <kernel.h>
-#include <ddm.h>
+#include "ddm.h"
 
 #define K_DDM_MAX_DEVICES	10
 

@@ -21,8 +21,8 @@
 // SOFTWARE.
 
 #include <kernel.h>
-#include <memory.h>
-#include <process.h>
+#include "memory.h"
+#include "process.h"
 
 void __attribute__((interrupt("SWI"))) kcall_handle(int r0, int r1, int r2, int r3) {
 	int result = kcall_dispatch(r0, r1, r2, r3);

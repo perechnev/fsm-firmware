@@ -21,7 +21,7 @@
 // SOFTWARE.
 
 #include <kernel.h>
-#include <memory.h>
+#include "memory.h"
 
 /*
  * 14MB of memory for free usage.
