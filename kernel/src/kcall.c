@@ -22,6 +22,7 @@
 
 #include <kernel.h>
 #include <memory.h>
+#include <process.h>
 
 void __attribute__((interrupt("SWI"))) kcall_handle(int r0, int r1, int r2, int r3) {
 	int result = kcall_dispatch(r0, r1, r2, r3);
@@ -34,8 +35,8 @@ int __attribute__((always_inline)) kcall_dispatch(int call, int r1, int r2, int 
         case KCALL_ALLOCATE:    return kcall_handle_allocate(r1);
         case KCALL_RETAIN:      return kcall_handle_retain(r1);
         case KCALL_RELEASE:     return kcall_handle_release(r1);
-        case KCALL_SPAWN:       break;
-        case KCALL_KILL:        break;
+        case KCALL_SPAWN:       return kcall_handle_spawn(r1);
+        case KCALL_KILL:        return kcall_handle_kill(r1);
         case KCALL_SEND:        break;
         case KCALL_RECEIVE:     break;
         case KCALL_WRITE:       break;
@@ -55,4 +56,12 @@ int __attribute__((always_inline)) kcall_handle_retain(int p1) {
 
 int __attribute__((always_inline)) kcall_handle_release(int p1) {
     return memory_release((void *)p1);
+}
+
+int __attribute__ ((always_inline)) kcall_handle_spawn(int p1) {
+    return process_spawn((process_entry *)p1);
+}
+
+int __attribute__ ((always_inline)) kcall_handle_kill(int p1) {
+    return process_kill(p1);
 }
