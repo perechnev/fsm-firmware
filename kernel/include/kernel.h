@@ -59,5 +59,6 @@ int		kcall(int call, int p1);
 #define PSTATE_EXIT         0x00
 #define PSTATE_INITIALIZING 0x01
 #define PSTATE_PASSING      0x02
+#define PSTATE_WAITING_MAIL 0x03
 
 #endif
