@@ -18,9 +18,9 @@ Releases the block of memory pointed in `address` and deallocates it if number o
 Returns the result number of block retains.
 
 ### Process
-* `kc_spawn();` _Not implemented_
-* `kc_kill();` _Not implemented_
-* `kc_send();` _Not implemented_
+* `int kc_spawn(void * entry);` _Not implemented_
+* `int kc_kill(int process_id);` _Not implemented_
+* `kc_send(int process_id, void * message);` _Not implemented_
 * `kc_receive();` _Not implemented_
 
 ### Node
