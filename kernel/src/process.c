@@ -1,3 +1,4 @@
+#include <kernel.h>
 #include "process.h"
 
 typedef struct {
@@ -19,7 +20,7 @@ int process_spawn(process_entry * entry) {
     for (int i = 0; i < MAX_PROCESS_COUNT; i++) {
         if (process_list[i].entry == 0) {
             process_list[i].entry = entry;
-            process_list[i].state = 1;
+            process_list[i].state = PSTATE_INITIALIZING;
             return i;
         }
     }
@@ -38,7 +39,7 @@ void process_schedule() {
             if (process_list[i].entry != 0) {
                 process_list[i].state = process_list[i].entry(process_list[i].state);
 
-                if (process_list[i].state == 0) {
+                if (process_list[i].state == PSTATE_EXIT) {
                     process_kill(i);
                 }
             }

@@ -20,14 +20,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+#include <kernel/kernel.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 
-#define STATE_DEFAULT			1
-#define	STATE_GETTING_CHARS		2
-#define	STATE_EXECUTING			3
+#define	PSTATE_GETTING_CHARS    0x100
+#define	PSTATE_EXECUTING		0x101
 
 char command_buffer[256];
 char current_symbol;
@@ -36,15 +36,15 @@ int __attribute__((section(".app_shell"))) shell_entry(int state) {
 	int read;
 	
 	switch (state) {
-		case 0:
-            return STATE_DEFAULT;
-			
-		case STATE_DEFAULT:
+	    case PSTATE_INITIALIZING:
+            return PSTATE_PASSING;
+
+		case PSTATE_PASSING:
 			current_symbol = 0;
 			puts("sh# ");
-            return STATE_GETTING_CHARS;
+            return PSTATE_GETTING_CHARS;
 			
-		case STATE_GETTING_CHARS:
+		case PSTATE_GETTING_CHARS:
 			read = fread(command_buffer + current_symbol, sizeof(char), 1, stdin);
 			
 			if (read > 0) {
@@ -54,17 +54,17 @@ int __attribute__((section(".app_shell"))) shell_entry(int state) {
 			if (command_buffer[current_symbol] == '\r') {
 				puts("\r\n");
 				command_buffer[current_symbol] = '\0';
-                return STATE_EXECUTING;
+                return PSTATE_EXECUTING;
 			}
 			
 			current_symbol += read;
 			command_buffer[current_symbol + 1] = '\0';
 
-            return STATE_GETTING_CHARS;
+            return PSTATE_GETTING_CHARS;
 			
-		case STATE_EXECUTING:
+		case PSTATE_EXECUTING:
 			if (strcmp(command_buffer, "exit") == 0) {
-                return 0;
+                return PSTATE_EXIT;
 			} else if (strcmp(command_buffer, "timer") == 0) {
 			    kc_spawn(0x4001000);
 			} else if (strcmp(command_buffer, "mmap") == 0) {
@@ -77,8 +77,8 @@ int __attribute__((section(".app_shell"))) shell_entry(int state) {
 				puts("\r\n");
 			}
 
-            return STATE_DEFAULT;
+            return PSTATE_PASSING;
 	}
 
-    return 0;
+    return PSTATE_EXIT;
 }

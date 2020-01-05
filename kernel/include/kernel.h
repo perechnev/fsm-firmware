@@ -44,4 +44,14 @@
 
 int		kcall(int call, int p1);
 
+/*
+ * Process state
+ *
+ * Codes 0x0000-0x00FF are reserved for system use.
+ * Codes from 0x0100 are available for process use.
+ */
+#define PSTATE_EXIT         0x00
+#define PSTATE_INITIALIZING 0x01
+#define PSTATE_PASSING      0x02
+
 #endif
