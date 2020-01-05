@@ -24,3 +24,11 @@ int kc_retain(void * address) {
 int kc_release(void * address) {
     return __kcall(KCALL_RELEASE, (int)address);
 }
+
+int kc_spawn(void * entry) {
+    return __kcall(KCALL_SPAWN, (int)entry);
+}
+
+int kc_kill(int process_id) {
+    return __kcall(KCALL_KILL, process_id);
+}
