@@ -23,28 +23,16 @@
 #ifndef __ISO646_H__
 #define __ISO646_H__
 
-#define __and     &&
-#define __and_eq  &=
-#define __bitand  &
-#define __bitor   |
-#define __compl   ~
-#define __not     !
-#define __not_eq  !=
-#define __or      ||
-#define __or_eq   |=
-#define __xor     ^
-#define __xor_eq  ^=
-
-#define and		__and
-#define and_eq	__and_eq
-#define bitand	__bitand
-#define bitor	__bitor
-#define compl	__compl
-#define not		__not
-#define not_eq	__not_eq
-#define or		__or
-#define or_eq	__or_eq
-#define xor		__xor
-#define xor_eq	__xor_eq
+#define and     &&
+#define and_eq  &=
+#define bitand  &
+#define bitor   |
+#define compl   ~
+#define not     !
+#define not_eq  !=
+#define or      ||
+#define or_eq   |=
+#define xor     ^
+#define xor_eq  ^=
 
 #endif /* __ISO646_H__ */
