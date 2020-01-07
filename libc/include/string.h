@@ -25,64 +25,36 @@
 
 #include "stddef.h"
 
-#ifndef __NULL
-#define __NULL ((void *)0)
+#ifndef NULL
+#define NULL ((void *)0)
 #endif
 
-int		__memcmp	(const char * __s1, const char * __s2, __size_t __n);
-void *	__memcpy	(void * __dest, const void * __src, __size_t __n);
-void *	__memmove	(void * __dest, const void * __src, __size_t __n);
-void *	__memchr	(const char * __s, int __c, __size_t __n);
-void *	__memset	(void * __s, int __c, __size_t __n);
+int		memcmp	(const char * s1, const char * s2, size_t n);
+void *	memcpy	(void * dest, const void * src, size_t n);
+void *	memmove	(void * dest, const void * src, size_t n);
+void *	memchr	(const char * s, int c, size_t n);
+void *	memset	(void * s, int c, size_t n);
 
-int		__strcmp	(const char * __s1, const char * __s2);
-int		__strncmp	(const char * __s1, const char * __s2, __size_t __n);
-char *	__strcat	(char * __dest, const char * __src);
-char *	__strncat	(char * __dest, const char * __src, __size_t __n);
-char *	__strchr	(const char * __s, int __c);
-char *	__strrchr	(const char * __s, int __c);
-char *	__strcpy	(char * __dest, const char * __src);
-char *	__strncpy	(char * __dest, const char * __src, __size_t __n);
-char *	__strerror	(int __errnum);
-char *	__strpbrk	(const char * __s, const char * __accept);
-char *	__strstr	(const char * __haystack, const char * __needle);
-char *	__strtok	(char * __s, const char * __delim);
-__size_t	__strlen	(const char * __s);
-__size_t	__strspn	(const char * __s, const char * __accept);
-__size_t	__strcspn	(const char * __s, const char * __reject);
+int		strcmp	(const char * s1, const char * s2);
+int		strncmp	(const char * s1, const char * s2, size_t n);
+char *	strcat	(char * dest, const char * src);
+char *	strncat	(char * dest, const char * src, size_t n);
+char *	strchr	(const char * s, int c);
+char *	strrchr	(const char * s, int c);
+char *	strcpy	(char * dest, const char * src);
+char *	strncpy	(char * dest, const char * src, size_t n);
+char *	strerror	(int errnum);
+char *	strpbrk	(const char * s, const char * accept);
+char *  strstr	(const char * haystack, const char * needle);
+char *	strtok	(char * s, const char * delim);
+size_t	strlen	(const char * s);
+size_t	strspn	(const char * s, const char * accept);
+size_t	strcspn	(const char * s, const char * reject);
 
 /* 
  * Depends on locale, so it will not be implemented yet.
  * int		__strcoll	(const char * __s1, const char * __s2);
  * __size_t	__strxfrm	(char * __dest, const char * __src, __size_t __n);
  */
-
-#if __STDC_HOSTED__ == 0
-
-#define	NULL	__NULL
-
-#define	memcmp	__memcmp
-#define	memcpy	__memcpy
-#define	memmove	__memmove
-#define	memchr	__memchr
-#define	memset	__memset
-
-#define	strcmp		__strcmp
-#define	strncmp		__strncmp
-#define	strcat		__strcat
-#define	strncat		__strncat
-#define	strchr		__strchr
-#define	strrchr		__strrchr
-#define	strcpy		__strcpy
-#define	strncpy		__strncpy
-#define	strerror	__strerror
-#define	strpbrk		__strpbrk
-#define	strstr		__strstr
-#define	strtok		__strtok
-#define	strlen		__strlen
-#define	strspn		__strspn
-#define	strcspn		__strcspn
-
-#endif /* __STDC_HOSTED__ */
 
 #endif /* __STRING_H__ */

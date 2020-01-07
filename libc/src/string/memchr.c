@@ -24,14 +24,14 @@
 #include <stddef.h>
 #include <string.h>
 
-void * __memchr(const char * __s, int __c, __size_t __n) {
-	register char * s_ptr = (char *)__s;
+void * memchr(const char * s, int c, size_t n) {
+	register char * s_ptr = (char *)s;
 	
-	for (; s_ptr - __s < __n; s_ptr++) {
-		if (*s_ptr == __c) {
+	for (; s_ptr - s < n; s_ptr++) {
+		if (*s_ptr == c) {
 			return s_ptr;
 		}
 	}
 	
-	return __NULL;
+	return NULL;
 }

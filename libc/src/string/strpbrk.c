@@ -22,14 +22,14 @@
 
 #include <string.h>
 
-char * __strpbrk(const register char * __s, const char * __accept) {
-	while (*__s != '\0') {
-		if (__strchr(__accept, *__s) != __NULL) {
-			return (char *)__s;
+char * strpbrk(const register char * s, const char * accept) {
+	while (*s != '\0') {
+		if (strchr(accept, *s) != NULL) {
+			return (char *)s;
 		}
 		
-		__s++;
+		s++;
 	}
 	
-	return __NULL;
+	return NULL;
 }

@@ -23,26 +23,26 @@
 
 #include <stdlib.h>
 
-double __atof(const char * __nptr) {
+double atof(const char * nptr) {
 	double value = 0.0;
 	double sign = 1.0;
 	char digit;
 	float after_dot = 0.0;
 	
-	if (*__nptr == '-') {
+	if (*nptr == '-') {
 		sign = -1.0;
-		__nptr++;
+		nptr++;
 	}
 	
-	while (*__nptr != '\0') {
-		if (*__nptr == '.' && after_dot == 0.0) {
+	while (*nptr != '\0') {
+		if (*nptr == '.' && after_dot == 0.0) {
 			after_dot = 10.0;
-			__nptr++;
+			nptr++;
 			continue;
 		}
 		
-		digit = *__nptr - '0';
-		__nptr++;
+		digit = *nptr - '0';
+		nptr++;
 			
 		if (digit < 0 || digit > 9) {
 			return -0.0;

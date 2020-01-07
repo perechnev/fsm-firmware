@@ -21,18 +21,18 @@
 // SOFTWARE.
 
 
-int __atoi(const char *__nptr) {
+int atoi(const char * nptr) {
 	int value = 0;
 	int sign = 1;
 	int digit;
 	
-	if (*__nptr == '-') {
+	if (*nptr == '-') {
 		sign = -1;
-		__nptr++;
+		nptr++;
 	}
 	
-	while (*__nptr != '\0') {
-		digit = *__nptr - '0';
+	while (*nptr != '\0') {
+		digit = *nptr - '0';
 		
 		if (digit < 0 || digit > 9) {
 			return 0;
@@ -40,7 +40,7 @@ int __atoi(const char *__nptr) {
 		
 		value *= 10;
 		value += digit;
-		__nptr++;
+		nptr++;
 	}
 	
 	return value * sign;

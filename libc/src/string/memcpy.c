@@ -23,7 +23,7 @@
 
 #include <string.h>
 
-void *__memcpy(void *dst, const void *src, __size_t n) {
+void * memcpy(void * dst, const void * src, size_t n) {
 	register int i;
 	
 	for (i = 0; i < n; i++) {

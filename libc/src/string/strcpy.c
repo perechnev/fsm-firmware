@@ -20,17 +20,17 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-char * __strcpy(char * __dest, const register char * __src) {
-	register char * dst_ptr = __dest;
+char * strcpy(char * dest, const register char * src) {
+	register char * dst_ptr = dest;
 	
 	do {
-		*dst_ptr = *__src;
+		*dst_ptr = *src;
 		dst_ptr++;
-		__src++;
+		src++;
 	}
-	while (*__src != '\0');
+	while (*src != '\0');
 	
 	*dst_ptr = '\0';
 	
-	return __dest;
+	return dest;
 }

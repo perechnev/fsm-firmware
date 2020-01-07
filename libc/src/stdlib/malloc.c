@@ -23,6 +23,6 @@
 #include <kernel/kcall.h>
 #include "stddef.h"
 
-void * __malloc(__size_t __size) {
-	return kc_allocate(__size);
+void * malloc(size_t size) {
+	return kc_allocate(size);
 }

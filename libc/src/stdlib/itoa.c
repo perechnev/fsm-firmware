@@ -24,11 +24,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-char * __revert(char *s) {
+char * revert(char * s) {
 	int i, j;
 	char tmp;
 	
-	for (i = 0, j = __strlen(s) - 1; i < j; i++, j--) {
+	for (i = 0, j = strlen(s) - 1; i < j; i++, j--) {
 		tmp = s[i];
 		s[i] = s[j];
 		s[j] = tmp;
@@ -37,7 +37,7 @@ char * __revert(char *s) {
 	return s;
 }
 
-void * __itoa(int input, char * buffer, int radix) {
+void * itoa(int input, char * buffer, int radix) {
 	char * beginning = buffer;
 	int digit;
 	
@@ -64,7 +64,7 @@ void * __itoa(int input, char * buffer, int radix) {
 	}
 	
 	*buffer = '\0';
-	__revert(beginning);
+	revert(beginning);
 	
 	return buffer;
 }

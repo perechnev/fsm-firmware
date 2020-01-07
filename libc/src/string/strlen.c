@@ -22,10 +22,10 @@
 
 #include <string.h>
 
-__size_t __strlen(const char * __s) {
-	register char * s_ptr = __s;
+size_t strlen(const char * s) {
+	register char * s_ptr = s;
 	
 	while (*s_ptr != '\0') { s_ptr++; }
 	
-	return s_ptr - __s;
+	return s_ptr - s;
 }

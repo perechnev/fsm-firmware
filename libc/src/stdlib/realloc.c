@@ -24,8 +24,8 @@
 #include <stddef.h>
 #include <string.h>
 
-void * __realloc(void * old_ptr, __size_t size) {
-	void * new_ptr = __malloc(size);
+void * realloc(void * old_ptr, size_t size) {
+	void * new_ptr = malloc(size);
 	memcpy(new_ptr, old_ptr, size);
 	free(old_ptr);
 	return new_ptr;

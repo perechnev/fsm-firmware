@@ -23,15 +23,15 @@
 #include <stddef.h>
 #include <string.h>
  
-char * __strncpy(char * __dest, const char * __src, __size_t __n) {
-	char * dst_ptr = __dest + __strlen(__dest);
+char * strncpy(char * dest, const char * src, size_t n) {
+	char * dst_ptr = dest + strlen(dest);
 	register int i;
 	
-	for (i = 0; i < __n, __src[i] != '\0'; i++) {
-		dst_ptr[i] = __src[i];
+	for (i = 0; i < n, src[i] != '\0'; i++) {
+		dst_ptr[i] = src[i];
 	}
 	
-	dst_ptr[__n] = '\0';
+	dst_ptr[n] = '\0';
 	
-	return __dest;
+	return dest;
 }

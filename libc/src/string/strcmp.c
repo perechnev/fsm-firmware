@@ -20,15 +20,15 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-int __strcmp(const char *__s1, const char *__s2) {
+int strcmp(const char * s1 , const char * s2) {
 	register int i;
 	
 	for (i = 0; ; i++) {
-		if (__s1[i] != __s2[i]) {
-			return __s1[i] < __s2[i] ? -1 : 1;
+		if (s1[i] != s2[i]) {
+			return s1[i] < s2[i] ? -1 : 1;
 		}
 		
-		if (__s1[i] == '\0') {
+		if (s1[i] == '\0') {
 			return 0;
 		}
 	}

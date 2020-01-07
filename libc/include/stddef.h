@@ -23,24 +23,16 @@
 #ifndef __STDDEF_H__
 #define __STDDEF_H__
 
-#ifndef __NULL
-#define __NULL ((void *)0)
+#include <kernel/kernel.h>
+
+#ifndef NULL
+#define NULL    K_NULL
 #endif
 
-#define __offsetof( st, m ) __builtin_offsetof( st, m )
+#define offsetof( st, m ) __builtin_offsetof( st, m )
 
-typedef unsigned int __size_t;
-typedef int     __ptrdiff_t;
-typedef char    __wchar_t;
-
-#if __STDC_HOSTED__ == 0
-
-#define	NULL		__NULL
-#define	offsetof	__offsetof
-#define	size_t		__size_t
-#define	ptrdiff_t	__ptrdiff_t
-#define	wchar_t		__wchar_t
-
-#endif /* __STDC_HOSTED__ */
+typedef unsigned int size_t;
+typedef int     ptrdiff_t;
+typedef char    wchar_t;
 
 #endif /* __STDDEF_H__ */

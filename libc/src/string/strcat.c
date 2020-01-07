@@ -23,19 +23,19 @@
 
 #include <string.h>
 
-char * __strcat(char * __dest, const register char * __src) {
-	register char * dst_ptr = __dest + __strlen(__dest);
+char * strcat(char * dest, const register char * src) {
+	register char * dst_ptr = dest + strlen(dest);
 	
 	for (;;) {
-		*dst_ptr = *__src;
+		*dst_ptr = *src;
 		
-		if (*__src == '\0') {
+		if (*src == '\0') {
 			break;
 		}
 		
 		dst_ptr++;
-		__src++;
+		src++;
 	}
 	
-	return __dest;
+	return dest;
 }

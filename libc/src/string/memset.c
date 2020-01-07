@@ -23,13 +23,13 @@
 
 #include <string.h>
 
-void *__memset(void *__s, int __c, __size_t __n) {
-	unsigned char *p = __s;
+void * memset(void * s, int c, size_t n) {
+	unsigned char * p = s;
 	register int i;
 	
-	for (i = 0; i < __n; i++) {
-		p[i] = (unsigned char)__c;
+	for (i = 0; i < n; i++) {
+		p[i] = (unsigned char)c;
 	}
 	
-	return __s;
+	return s;
 }

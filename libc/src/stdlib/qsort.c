@@ -25,28 +25,23 @@
 #include <stddef.h>
 #include <string.h>
 
-void __qsort(
-	void *__base,
-	__size_t __nmemb,
-	__size_t __size,
-	__f_compar_t __compar
-) {
-	char * ch_base = (char *)__base;
+void qsort(void * base, size_t nmemb, size_t size, f_compar_t compar) {
+	char * ch_base = (char *)base;
 	void * b;
 	int i = 0, j = 0;
 	unsigned long t;
 	
-	if (__nmemb < 2) {
+	if (nmemb < 2) {
 		return;
 	}
 	
-	b = ch_base + (__nmemb - 1) * __size;
+	b = ch_base + (nmemb - 1) * size;
 	
-	while (j < __nmemb) {
-		if (__compar((const void *)(ch_base + j * __size), b) <= 0) {
-			__memcpy(&t, ch_base + j * __size, __size);
-			__memmove(ch_base + (i + 1) * __size, ch_base + i * __size, (j - i) * __size);
-			__memcpy(ch_base + i * __size, &t, __size);
+	while (j < nmemb) {
+		if (compar((const void *)(ch_base + j * size), b) <= 0) {
+			memcpy(&t, ch_base + j * size, size);
+			memmove(ch_base + (i + 1) * size, ch_base + i * size, (j - i) * size);
+			memcpy(ch_base + i * size, &t, size);
 			
 			i++;
 		}
@@ -54,6 +49,6 @@ void __qsort(
 		j++;
 	}
 	
-	__qsort(__base, i - 1, __size, __compar);
-	__qsort(ch_base + i * __size, j - i, __size, __compar);
+	qsort(base, i - 1, size, compar);
+	qsort(ch_base + i * size, j - i, size, compar);
 }

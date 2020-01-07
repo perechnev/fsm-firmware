@@ -25,25 +25,25 @@
 
 char * __strtok_s_ptr;
 
-char * __strtok(char * s, const char * delim) {
+char * strtok(char * s, const char * delim) {
 	char * origin_s_ptr;
 	
-	if (s != __NULL) {
+	if (s != NULL) {
 		__strtok_s_ptr = s;
 	}
 	
-	if (__strtok_s_ptr == __NULL) {
-		return __NULL;
+	if (__strtok_s_ptr == NULL) {
+		return NULL;
 	}
 	
-	while (__strchr(delim, *__strtok_s_ptr) != __NULL && *__strtok_s_ptr != '\0') {
+	while (strchr(delim, *__strtok_s_ptr) != NULL && *__strtok_s_ptr != '\0') {
 		__strtok_s_ptr++;
 	}
 	
 	origin_s_ptr = __strtok_s_ptr;
 	
 	while (*__strtok_s_ptr != '\0') {
-		if (__strchr(delim, *__strtok_s_ptr) != __NULL) {
+		if (strchr(delim, *__strtok_s_ptr) != NULL) {
 			break;
 		}
 		__strtok_s_ptr++;
@@ -56,5 +56,5 @@ char * __strtok(char * s, const char * delim) {
 		return origin_s_ptr;
 	}
 	
-	return __NULL;
+	return NULL;
 }

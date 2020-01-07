@@ -22,17 +22,17 @@
 
 #include <string.h>
 
-char * __strstr(const char *__haystack, const char *__needle) {
-	register char * h_ptr = (char *)__haystack;
-	__size_t n_len = __strlen(__needle);
+char * strstr(const char * haystack, const char * needle) {
+	register char * h_ptr = (char *)haystack;
+	size_t n_len = strlen(needle);
 	
 	do {
-		if (__strncmp(h_ptr, __needle, n_len) == 0) {
+		if (strncmp(h_ptr, needle, n_len) == 0) {
 			return h_ptr;
 		}
 		
 		h_ptr++;
 	} while (*h_ptr != '\0');
 	
-	return (char *)__NULL;
+	return (char *)NULL;
 }

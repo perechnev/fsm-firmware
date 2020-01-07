@@ -25,10 +25,10 @@
 #include <string.h>
 #include <kernel/io.h>
 
-__size_t fread(void * ptr, __size_t size, __size_t nmemb, __FILE * stream) {
+size_t fread(void * ptr, size_t size, size_t nmemb, FILE * stream) {
 	return k_ddm_read(stream, ptr, size * nmemb);
 }
 
-int __puts(const char *s) {
-	return k_ddm_write(__stdout, s, strlen(s));
+int puts(const char * s) {
+	return k_ddm_write(stdout, s, strlen(s));
 }

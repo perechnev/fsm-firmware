@@ -23,6 +23,6 @@
 
 #include <stdlib.h>
 
-int __abs(int __x) {
-	return __x >= 0 ? __x : -__x;
+int abs(int x) {
+	return x >= 0 ? x : -x;
 }

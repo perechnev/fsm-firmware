@@ -23,6 +23,6 @@
 #include <stddef.h>
 #include <kernel/kcall.h>
 
-void __free(void *__ptr) {
-    kc_release(__ptr);
+void free(void * ptr) {
+    kc_release(ptr);
 }

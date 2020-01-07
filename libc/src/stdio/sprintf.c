@@ -24,49 +24,49 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
-int __sprintf(char *__s, const char *__format, ...) {
+int sprintf(char * s, const char * format, ...) {
 	char replacing = 0;
 	char buffer[64];
 	char *buffer_ptr = buffer;
 	
 	__va_list args;
-	__va_start(args, __format);
+	__va_start(args, format);
 	
 	do {
 		if (replacing == 1) {
-			if (*__format == 's') {
+			if (*format == 's') {
 				char *c = __va_arg(args, char *);
 				
 				while (*c != '\0') {
-					*__s = *c;
-					__s++;
+					*s = *c;
+					s++;
 					c++;
 				}
-			} else if (*__format == 'd') {
+			} else if (*format == 'd') {
 				int n = __va_arg(args, int);
 				
-				__itoa(n, buffer, 10);
+				itoa(n, buffer, 10);
 				buffer_ptr = buffer;
 				while (*buffer_ptr != '\0') {
-					*__s = *buffer_ptr;
-					__s++;
+					*s = *buffer_ptr;
+					s++;
 					buffer_ptr++;
 				}
 			}
 			replacing = 0;
-		} else if (*__format == '%') {
+		} else if (*format == '%') {
 			replacing = 1;
 		} else {
-			*__s = *__format;
-			__s++;
+			*s = *format;
+			s++;
 		}
 		
-		__format++;
+		format++;
 	}
-	while (*__format != '\0');
+	while (*format != '\0');
 	
 	__va_end(args);
 	
-	*__s = '\0';
+	*s = '\0';
 	return 0;
 }

@@ -43,17 +43,12 @@
 
 //typedef ... fpos_t;
 
-#define __FILE		void
-#define __stdout	void
-#define __stdin		void
-#define __stderr	void
+#define FILE	k_ddm_device_t
+#define stdout	(k_ddm_get_device("stdout"))
+#define stdin	(k_ddm_get_device("stdin"))
+#define stderr	(k_ddm_get_device("stderr"))
 
-#define __FILE		k_ddm_device_t
-#define __stdout	(k_ddm_get_device("stdout"))
-#define __stdin		(k_ddm_get_device("stdin"))
-#define __stderr	(k_ddm_get_device("stderr"))
-
-int	__sprintf	(char *__s, const char *__format, ...);
+int	sprintf(char * s, const char * format, ...);
 //fclose	закрывает файл, ассоциированный с переданным ей значением FILE *
 //fopen, freopen, fdopen	открывают файл для определённых типов чтения и записи
 //remove	удаляет файл (стирая его)
@@ -91,16 +86,7 @@ int	__sprintf	(char *__s, const char *__format, ...);
 //ungetc	помещает символ обратно в поток
 //int		__getchar	(void);
 
-int		__puts		(const char *s);
-__size_t	__fread	(void *, __size_t, __size_t, __FILE *);
-
-#define FILE		__FILE
-#define stdout		__stdout
-#define stdin		__stdin
-
-#define	sprintf		__sprintf
-#define puts		__puts
-#define fread		__fread
-//#define getchar		__getchar
+int		puts	(const char * s);
+size_t	fread	(void *, size_t, size_t, FILE *);
 
 #endif /* __STDIO_H__ */

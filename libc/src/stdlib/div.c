@@ -23,20 +23,20 @@
 
 #include <stdlib.h>
 
-__div_t __div(int __number, int __denom) {
-	__div_t result;
+div_t div(int number, int denom) {
+	div_t result;
 	
-	result.quot = __number / __denom;
-	result.rem = __number % __denom;
+	result.quot = number / denom;
+	result.rem = number % denom;
 	
 	return result;
 }
 
-__ldiv_t __ldiv(long int __number, long int __denom) {
-	__ldiv_t result;
+ldiv_t ldiv(long int number, long int denom) {
+	ldiv_t result;
 	
-	result.quot = __number / __denom;
-	result.rem = __number % __denom;
+	result.quot = number / denom;
+	result.rem = number % denom;
 	
 	return result;
 }

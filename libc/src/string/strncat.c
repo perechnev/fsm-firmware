@@ -23,15 +23,15 @@
 #include <stddef.h>
 #include <string.h>
 
-char * __strncat(char * __dest, const register char * __src, __size_t __n) {
-	register char * dst_ptr = __dest + __strlen(__dest);
+char * strncat(char * dest, const register char * src, size_t n) {
+	register char * dst_ptr = dest + strlen(dest);
 	register int i = 0;
 	
-	for ( ; *__src != '\0', i < __n; dst_ptr++, __src++, i++) {
-		*dst_ptr = *__src;
+	for ( ; *src != '\0', i < n; dst_ptr++, src++, i++) {
+		*dst_ptr = *src;
 	}
 	
 	*dst_ptr = '\0';
 	
-	return __dest;
+	return dest;
 }

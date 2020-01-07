@@ -23,45 +23,28 @@
 #ifndef __TIME_H__
 #define __TIME_H__
 
-#define __CLOCKS_PER_SEC	0 /* ! */
-#define	__CLK_PER_SEC		0 /* ! */
+#define CLOCKS_PER_SEC	0 /* ! */
+#define	CLK_PER_SEC		0 /* ! */
 
-typedef int __clock_t;
-typedef int __time_t;
+typedef int clock_t;
+typedef int time_t;
 
-struct __tm {
-		int	tm_sec;
-		int	tm_min;
-		int	tm_hour;
-		int	tm_mday;
-		int	tm_mon;
-		int tm_year;
-		int tm_wday;
-		int tm_yday;
-		int tm_isdst;
+struct tm {
+    int	tm_sec;
+    int	tm_min;
+    int	tm_hour;
+    int	tm_mday;
+    int	tm_mon;
+    int tm_year;
+    int tm_wday;
+    int tm_yday;
+    int tm_isdst;
 };
 
-__clock_t	__clock	(void);
-__time_t	__time	(__time_t *__tp);
-double		__difftime	(__time_t __time2, __time_t __time1);
-__time_t	__mktime	(struct __tm *__tp);
+clock_t	clock	(void);
+time_t	time	(time_t * tp);
+double	difftime(time_t time2, time_t time1);
+time_t	mktime	(struct tm * tp);
 /* char *		__asctime	(const struct __tm *__tp); */
-
-#if __STDC_HOSTED__ == 0
-
-#define CLOCKS_PER_SEC	__CLOCKS_PER_SEC
-#define	CLK_PER_SEC		__CLK_PER_SEC
-
-#define	clock_t	__clock_t
-#define	time_t	__time_t
-
-#define	tm		__tm
-
-#define	clock		__clock
-#define	time		__time
-#define	difftime	__difftime
-#define	mktime		__mktime
-
-#endif /* __STDC_HOSTED__ */
 
 #endif /* __TIME_H__ */

@@ -24,42 +24,22 @@
 #include <stdlib.h>
 #include <stddef.h>
 
-void * __bsearch(
-	const void *__key,
-	const void *__base,
-	__size_t __nmemb,
-	__size_t __size,
-	__f_compar_t __compar
-) {
-	if (__nmemb == 0) {
-		return __NULL;
+void * bsearch(const void * key, const void * base, size_t nmemb, size_t size, f_compar_t compar) {
+	if (nmemb == 0) {
+		return NULL;
 	}
 	
-	if (__nmemb == 1) {
-		if (__compar(__key, __base) == 0) {
-			return (void *)__base;
+	if (nmemb == 1) {
+		if (compar(key, base) == 0) {
+			return (void *)base;
 		}
 		
-		return __NULL;
+		return NULL;
 	}
 	
-	if (__compar(__key, (char *)__base + __nmemb / 2 * __size) < 0) {
-		return __bsearch(
-			__key,
-			__base,
-			__nmemb / 2,
-			__size,
-			__compar
-		);
+	if (compar(key, (char *)base + nmemb / 2 * size) < 0) {
+		return bsearch(key, base, nmemb / 2, size, compar);
 	} else {
-		return __bsearch(
-			__key,
-			(char *)__base + __nmemb / 2  * __size,
-			__nmemb - __nmemb / 2,
-			__size,
-			__compar
-		);
+		return bsearch(key, (char *)base + nmemb / 2  * size, nmemb - nmemb / 2, size, compar);
 	}
-	
-	return __NULL;
 }

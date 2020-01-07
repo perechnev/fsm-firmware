@@ -23,22 +23,22 @@
 
 #include <stddef.h>
 
-void * __memmove(void * __dest, const void * __src, __size_t __n) {
-	char * dst_ptr = (char *)__dest;
-	char * src_ptr = (char *)__src;
+void * memmove(void * dest, const void * src, size_t n) {
+	char * dst_ptr = (char *)dest;
+	char * src_ptr = (char *)src;
 	
 	register int i;
 	
 	if (dst_ptr < src_ptr) {
-		for (i = 0; i < __n; i++) {
+		for (i = 0; i < n; i++) {
 			dst_ptr[i] = src_ptr[i];
 		}
 	}
 	else {
-		for (i = __n - 1; i >= 0; i--) {
+		for (i = n - 1; i >= 0; i--) {
 			dst_ptr[i] = src_ptr[i];
 		}
 	}
 	
-	return __dest;
+	return dest;
 }

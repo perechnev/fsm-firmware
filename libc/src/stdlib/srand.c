@@ -23,6 +23,6 @@
 
 extern __rand_ctx; /* Declared in `rand.c` */
 
-void __srand(unsigned int __seed) {
-	__rand_ctx = (long)__seed;
+void srand(unsigned int seed) {
+	__rand_ctx = (long)seed;
 }

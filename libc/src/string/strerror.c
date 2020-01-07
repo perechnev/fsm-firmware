@@ -29,11 +29,11 @@ static char * k_eilseq = "Error invalid sequence";
 static char * k_erange = "Error range";
 static char * k_unknown = "Unknown error";
 
-char * __strerror(register int __errnum) {
-	switch (__errnum) {
-		case __EDOM:	return k_edom;
-		case __EILSEQ:	return k_eilseq;
-		case __ERANGE:	return k_erange;
+char * strerror(register int errnum) {
+	switch (errnum) {
+		case EDOM:	    return k_edom;
+		case EILSEQ:	return k_eilseq;
+		case ERANGE:	return k_erange;
 	}
 	return k_unknown;
 }

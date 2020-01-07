@@ -25,22 +25,22 @@
 
 char __time_string[26] = "";
 
-__clock_t __clock(void) {
+clock_t clock(void) {
 	return -1;
 }
 
-__time_t __time(__time_t *__tp) {
-	if (__tp != __NULL) {
-		*__tp = -1;
+time_t time(time_t * tp) {
+	if (tp != NULL) {
+		*tp = -1;
 	}
 	
 	return -1;
 }
 
-double __difftime(__time_t __time2, __time_t __time1) {
-	return (double)(__time2 - __time1);
+double difftime(time_t time2, time_t time1) {
+	return (double)(time2 - time1);
 }
 
-__time_t __mktime(struct __tm *__tp) {
+time_t mktime(struct tm * tp) {
 	return -1;
 }

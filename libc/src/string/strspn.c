@@ -22,14 +22,14 @@
 
 #include <string.h>
 
-__size_t __strspn(const char * __s, const char * __accept) {
+size_t strspn(const char * s, const char * accept) {
     register char * s_ptr;
     
     for (
-		s_ptr = (char *)__s;
-		*s_ptr != '\0' && __strchr(__accept, *s_ptr) != __NULL;
+		s_ptr = (char *)s;
+		*s_ptr != '\0' && strchr(accept, *s_ptr) != NULL;
 		s_ptr++
 	);
     
-    return s_ptr - __s;
+    return s_ptr - s;
 }

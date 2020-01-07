@@ -23,23 +23,12 @@
 #ifndef __STDINT_H__
 #define __STDINT_H__
 
-typedef	char		__int8_t;
-typedef short		__int16_t;
-typedef	int			__int32_t;
+typedef	char	int8_t;
+typedef short   int16_t;
+typedef	int		int32_t;
 
-typedef unsigned char		__uint8_t;
-typedef unsigned short		__uint16_t;
-typedef unsigned int		__uint32_t;
-
-#if __STDC_HOSTED__ == 0
-
-#define	int8_t		__int8_t
-#define	int16_t		__int16_t
-#define int32_t		__int32_t
-#define	uint8_t		__uint8_t
-#define	uint16_t	__uint16_t
-#define	uint32_t	__uint32_t
-
-#endif /* __STDC_HOSTED__ */
+typedef unsigned char	uint8_t;
+typedef unsigned short	uint16_t;
+typedef unsigned int	uint32_t;
 
 #endif /* __STDINT_H__ */

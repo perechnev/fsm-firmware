@@ -23,6 +23,6 @@
 
 #include <stdlib.h>
 
-long int __labs(long int __x) {
-	return __x >= 0 ? __x : -__x;
+long int labs(long int x) {
+	return x >= 0 ? x : -x;
 }

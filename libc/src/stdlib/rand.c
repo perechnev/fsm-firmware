@@ -23,7 +23,7 @@
 
 long __rand_ctx = 1L;
 
-int __rand(void) {
+int rand(void) {
 	/*
 	 * Taken from Sanos Operating System Kernel.
 	 * http://www.jbox.dk/sanos/source/lib/stdlib.c.html

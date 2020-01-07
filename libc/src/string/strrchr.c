@@ -22,16 +22,16 @@
 
 #include <string.h>
 
-char * __strrchr(const char * __s, int __c) {
-	register char * s_ptr = (char *)__s + __strlen(__s);
+char * strrchr(const char * s, int c) {
+	register char * s_ptr = (char *)s + strlen(s);
 	
-	while (s_ptr > __s) {
+	while (s_ptr > s) {
 		s_ptr--;
 		
-		if (*s_ptr == (char)__c) {
+		if (*s_ptr == (char)c) {
 			return s_ptr;
 		}
 	}
 	
-	return __NULL;
+	return NULL;
 }

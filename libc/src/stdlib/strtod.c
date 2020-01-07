@@ -21,6 +21,6 @@
 // SOFTWARE.
 
 
-double __strtod(const char *__nptr, char **__endptr) {
+double strtod(const char * nptr, char ** endptr) {
 	return 0.0;
 }

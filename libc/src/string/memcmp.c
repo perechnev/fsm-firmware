@@ -23,10 +23,10 @@
 
 #include <stddef.h>
 
-int __memcmp(const char *__s1, const char *__s2, register __size_t __n) {
-	while (__n-- > 0) {
-		if (*(__s1 + __n) != *(__s2 + __n)) {
-			return *(__s1 + __n) > *(__s2 + __n) ? 1 : -1;
+int memcmp(const char * s1, const char * s2, register size_t n) {
+	while (n-- > 0) {
+		if (*(s1 + n) != *(s2 + n)) {
+			return *(s1 + n) > *(s2 + n) ? 1 : -1;
 		}
 	}
 	
