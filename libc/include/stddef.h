@@ -23,11 +23,7 @@
 #ifndef __STDDEF_H__
 #define __STDDEF_H__
 
-#include <kernel/kernel.h>
-
-#ifndef NULL
-#define NULL    K_NULL
-#endif
+#include "null.h"
 
 #define offsetof( st, m ) __builtin_offsetof( st, m )
 

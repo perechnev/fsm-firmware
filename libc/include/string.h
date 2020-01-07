@@ -24,10 +24,7 @@
 #define __STRING_H__
 
 #include "stddef.h"
-
-#ifndef NULL
-#define NULL ((void *)0)
-#endif
+#include "null.h"
 
 int		memcmp	(const char * s1, const char * s2, size_t n);
 void *	memcpy	(void * dest, const void * src, size_t n);
