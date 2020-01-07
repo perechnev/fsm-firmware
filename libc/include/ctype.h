@@ -23,35 +23,20 @@
 #ifndef __CTYPE_H__
 #define __CTYPE_H__
 
-int		__isalnum	(int __c);
-int		__isalpha	(int __c);
-int		__isblank	(int __c);
-int 	__iscntrl	(int __c);
-int		__isdigit	(int __c);
-int		__isgraph	(int __c);
-int		__islower	(int __c);
-int		__isprint	(int __c);
-int 	__ispunct	(int __c);
-int		__isspace	(int __c);
-int		__isupper	(int __c);
-int		__isxdigit	(int __c);
+int isalnum(int c);
+int isalpha(int c);
+int isblank(int c);
+int iscntrl(int c);
+int isdigit(int c);
+int isgraph(int c);
+int islower(int c);
+int isprint(int c);
+int ispunct(int c);
+int isspace(int c);
+int isupper(int c);
+int isxdigit(int c);
 
-int		__tolower	(int __c);
-int		__toupper	(int __c);
-
-#define	isalnum		__isalnum
-#define	isalpha		__isalpha
-#define	isblank		__isblank
-#define	iscntrl		__iscntrl
-#define isdigit		__isdigit
-#define	isgraph		__isgraph
-#define	islower		__islower
-#define	isprint		__isprint
-#define	ispunct		__ispunct
-#define	isspace		__isspace
-#define	isupper		__isupper
-#define	isxdigit	__isxdigit
-#define	tolower		__tolower
-#define	toupper		__toupper
+int tolower(int c);
+int toupper(int c);
 
 #endif /* __CTYPE_H__ */

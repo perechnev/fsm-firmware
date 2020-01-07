@@ -23,47 +23,45 @@
 
 #include <ctype.h>
 
-int __in_range(int __c, int __l, int __h);
+int __in_range(int c, int l, int h);
 
-int __isalnum(int __c) {
-	return	__isdigit(__c) || __isalpha(__c);
+int isalnum(int c) {
+	return isdigit(c) || isalpha(c);
 }
 
-int __isalpha(int __c) {
-	return __islower(__c) || __isupper(__c);
+int isalpha(int c) {
+	return islower(c) || isupper(c);
 }
 
-int __isblank(int __c) {
-	return __c == ' ' || __c == '\t';
+int isblank(int c) {
+	return c == ' ' || c == '\t';
 }
 
-int __iscntrl(int __c) {
+int iscntrl(int c) {
 	/*
 	 * Control characters are all characters in range between 0x00 (NUL)
 	 * and 0x1f (US), plus 0x7f (DEL).
 	 */
-	 return __c == 0x7f || __in_range(__c, 0x00, 0x1f);
+	 return c == 0x7f || __in_range(c, 0x00, 0x1f);
 }
 
-int __isdigit(int __c) {
-	return __c >= '0' && __c <= '9';
+int isdigit(int c) {
+	return __in_range(c, '0', '9');
 }
 
-int __isxdigit(int __c) {
-	return	__isdigit(__c) ||
-			__in_range(__c, 'A', 'F') ||
-			__in_range(__c, 'a', 'f');
+int isxdigit(int c) {
+	return isdigit(c) || __in_range(c, 'A', 'F') || __in_range(c, 'a', 'f');
 }
 
-int __islower(int __c) {
-	return __in_range(__c, 'a', 'z');
+int islower(int c) {
+	return __in_range(c, 'a', 'z');
 }
 
-int __isprint(int __c) {
-	return !__iscntrl(__c);
+int isprint(int c) {
+	return !iscntrl(c);
 }
 
-int __isspace(int __c) {
+int isspace(int c) {
 	/*
 	 * Standard white-space characters are:
 	 * 	' ' 	(0x20)	space
@@ -73,33 +71,33 @@ int __isspace(int __c) {
 	 * 	'\f'	(0x0c)	feed
 	 * 	'\r'	(0x0d)	carriage return
 	 */
-	 return __c == ' ' || __in_range(__c, '\t', '\r');
+	 return c == ' ' || __in_range(c, '\t', '\r');
 }
 
-int __isgraph(int __c) {
-	return __isprint(__c) && __c != ' ';
+int isgraph(int c) {
+	return isprint(c) && c != ' ';
 }
 
-int __ispunct(int __c) {
-	return __isgraph(__c) && !__isalnum(__c);
+int ispunct(int c) {
+	return isgraph(c) && !isalnum(c);
 }
 
-int __isupper(int __c) {
-	return __in_range(__c, 'A', 'Z');
+int isupper(int c) {
+	return __in_range(c, 'A', 'Z');
 }
 
-int __tolower(int __c) {
-	return __isupper(__c) ? __c + 0x20 : __c;
+int tolower(int c) {
+	return isupper(c) ? c + 0x20 : c;
 }
 
-int __toupper(int __c) {
-	return __islower(__c) ? __c - 0x20 : __c;
+int toupper(int c) {
+	return islower(c) ? c - 0x20 : c;
 }
 
 /*
  * Internal implementation
  */
 
-int __in_range(int __c, int __l, int __h) {
-	return __c >= __l && __c <= __h;
+int __in_range(int c, int l, int h) {
+	return c >= l && c <= h;
 }
