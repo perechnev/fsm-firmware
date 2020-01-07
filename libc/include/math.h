@@ -23,11 +23,7 @@
 #ifndef __MATH_H__
 #define __MATH_H__
 
-double	__pow	(double __x, double __y);
-
-#if __STDC_HOSTED__ == 0
-#define	pow		__pow
-#endif /* __STDC_HOSTED__ */
+double	pow	(double x, double y);
 
 #endif /* __MATH_H__ */
 

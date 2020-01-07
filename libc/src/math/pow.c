@@ -23,16 +23,16 @@
 
 #include <math.h>
 
-double __pow(double __x, double __y) {
-	double value = __x;
+double pow(double x, double y) {
+	double value = x;
 	int i;
 	
-	if (__y == 0.0) {
+	if (y == 0.0) {
 		return 1.0;
 	}
 	
-	for (i = 0; i < __y - 1; i++) {
-		value *= __x;
+	for (i = 0; i < y - 1; i++) {
+		value *= x;
 	}
 	
 	return value;
